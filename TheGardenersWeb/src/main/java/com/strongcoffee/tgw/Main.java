@@ -10,9 +10,9 @@ public class Main {
 	public static void main( String[] args ) {
 		System.out.println( "Hello world!\n" );
 
-		HashMap<String, String> qsParams = new HashMap<String, String>();
+		HashMap<String, String> queryStringParameters = new HashMap<String, String>();
 		APIGatewayV2HTTPEvent event = new APIGatewayV2HTTPEvent();
-		event.setQueryStringParameters( qsParams );
+		event.setQueryStringParameters( queryStringParameters );
 		Context context = null;
 
 		Handler handler = new Handler();
@@ -20,10 +20,3 @@ public class Main {
 
 	}
 }
-
-/*
-https://www.javadoc.io/doc/com.google.code.gson/gson/2.8.1/index.html
-https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html
-https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html
-https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html
-*/
