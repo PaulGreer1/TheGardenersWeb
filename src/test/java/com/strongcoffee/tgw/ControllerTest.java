@@ -78,45 +78,5 @@ public class ControllerTest {
 		for( int i = 0; i < TgwUtils.getDifference( set1, set2 ).size(); i++ ) {
 			assertTrue( ! set1.contains( TgwUtils.getDifference( set1, set2 ).get(i) ) );
 		}
-
 	}
-
 }
-
-/*
-SELECT * FROM garden;
-
-DELETE FROM garden WHERE garden_id IN (1,2,7,8);
-
-*/
-
-/*
-In controller, gardens put into ArrayList so test can access them. resultSets do not last beyond con.close(). Q: How would you deal
-with large lists in small memory? A: For tests requiring only ArrayList sizes, we could scale down all the ArrayLists
-involved by a common factor.
- */
-
-/**
- *
- * @InformalPostCondition: The number of rows in the garden table is decremented by 1.
- * @FormalPostCondition: n(newIds) = n(oldIds) - 1
- * @InformalPostCondition: There existed a row in the old garden table with a garden_id that is different from
- * any of the garden_ids that exist in the new table.
- * @FormalPostCondition: E i in oldIds [ A j in newIds [ j != i ] ]
- * @FormalPostCondition: newIds = oldIds DIFF deletedId
- */
-
-/*
-To get the size of a ResultSet:
-
-Do a SELECT COUNT(*) FROM ... query,
-
-OR
-
-int size = 0;
-if( rs != null )
-{
-	rs.last();              // moves cursor to the last row
-	size = rs.getRow();     // get row id
-}
-*/
