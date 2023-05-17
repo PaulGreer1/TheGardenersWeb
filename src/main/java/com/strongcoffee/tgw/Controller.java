@@ -18,7 +18,7 @@ interface EventHandler {
 
 /**
  * References to these lambda functions are stored with the Registrar object. Each handler is registered for a set of events. When an
- * event for which a handler is registered for occurs, the Registrar will call the handler.
+ * event for which a handler is registered, the Registrar will call the handler.
  */
 public class Controller {
 
