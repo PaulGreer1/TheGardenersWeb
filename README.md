@@ -9,7 +9,7 @@ A UI event occurs when a request comes from the UI, then passes through the Gate
 The Registrar also stores request data which it passes to registered event handlers as they are being executed in the notify() method.
 
 #### 6. Registering event handlers for events
-References to Controller methods, each with same signature as that given in the EventHandler interface, are passed to the Registrar's add() method. The add() method adds the event handler methods to a HashMap< EventHandler, HashSet< String > >. The EventHandler interface provides the event handler's signature, and the method implementation provides the body. The named reference is stored in the HashMap along with its events of interest. As request events occur, the Registrar's notify() method executes the relevant handlers via their references.
+References to Controller methods, each with the same signature as that given in the EventHandler interface, are passed to the Registrar's add() method. The add() method adds the event handler methods to a HashMap< EventHandler, HashSet< String > >. The EventHandler interface provides the event handler's signature, and the method implementation provides the body. The named reference is stored in the HashMap along with its events of interest. As request events occur, the Registrar's notify() method executes the relevant handlers via their references.
 
 #### 8 Simulating connection requests
 In main(), Scanner object is used on the standard input (System.in) to simulate a server listening for connection requests.
