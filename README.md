@@ -4,12 +4,12 @@
 Click image to enlarge
 
 #### 4. The role of the Registrar
-A UI event occurs when a request comes from the UI, then passes through the Gateway and on to the Handler. The Handler invokes the Registrar's notify() method, passing the name of the event. The relationship between the event handlers and the events for which they are registered, is many-to-many. That is, each handler may register for zero or more events, and each event may invoke zero or more handlers. The Registrar adds and deletes event handlers and their events to and from a HashMap<EventHandler, HashSet<String>>. When an event occurs, the Registrar's notify() method retrieves and executes the event handlers which have that event listed in their HashSets of events.
+A UI event occurs when a request comes from the UI, then passes through the Gateway and on to the Handler. The Handler invokes the Registrar's notify() method, passing the name of the event. The relationship between the event handlers and the events for which they are registered, is many-to-many. That is, each handler may register for zero or more events, and each event may invoke zero or more handlers. The Registrar adds and deletes event handlers and their events to and from a HashMap< EventHandler, HashSet< String > >. When an event occurs, the Registrar's notify() method retrieves and executes the event handlers which have that event listed in their HashSets of events.
 
-The Registrar also stores request data, and passes to registered event handlers as they are being executed in the notify() method.
+The Registrar also stores request data which it passes to registered event handlers as they are being executed in the notify() method.
 
 #### 6. Registering event handlers for events
-References to methods each with same signature as that given in the EventHandler interface. The method provides body, and named reference which can be stored and through which the body can be executed.
+References to Controller methods, each with same signature as that given in the EventHandler interface, are passed to the Registrar's add() method. The add() method adds the event handler methods to a HashMap< EventHandler, HashSet< String > >. The EventHandler interface provides the event handler's signature, and the method implementation provides the body. The named reference is stored in the HashMap along with its events of interest. As request events occur, the Registrar's notify() method executes the relevant handlers via their references.
 
 #### 8 Simulating connection requests
 In main(), Scanner object is used on the standard input (System.in) to simulate a server listening for connection requests.
