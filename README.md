@@ -53,7 +53,7 @@ As well as keeping track of event registrations, the Registrar also has two data
 The handleRequest() method calls the Registrar's notify() method, and passes the event object to it. The notify() method notifies all registered event handlers that an event has occurred. The notify() method iterates through the event handlers in the eventHandlers HashMap, searching each event handler's event list to see whether the handler is registered for the event. All handlers registered for the event are executed.
 
 #### 13. Execution of the event handlers
-Each event handler accesses the database. The 'input' parameter of an event handler is a HashMap< String, String > which holds the request data. These data are used as parameters in prepared SQL statements to access the database, and also as simple String variables to build specific SQL statements. Regular expressions are used to ensure pre-approved input. Prepared statements and regular expressions together prevent SQL injection.
+Each event handler accesses the database. The 'input' parameter of an event handler is a HashMap< String, String > which holds the request data. These data are used as parameters in prepared SQL statements to access the database, and also as simple String variables to build specific SQL statements. Regular expressions are used to ensure that only pre-approved input is accepted. Prepared statements and regular expressions together prevent SQL injection.
 
 #### 14. Types of database event handler
 There are two types of database EventHandler - readers and writers. Readers retrieve tables of data which are saved in the Registrar's dataStore variable. Both readers and writers return booleans to the registrar.
