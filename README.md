@@ -1,4 +1,4 @@
-### TheGardenersWeb
+## Overview of the server's request-response process
 
 ![Request_response_sequence_diagram](https://github.com/PaulGreer1/TheGardenersWeb/blob/main/REQUEST_RESPONSE_SEQUENCE_DIAGRAM.png)
 Click image to enlarge
@@ -6,7 +6,7 @@ Click image to enlarge
 ### Preparing a request-response session
 
 #### 1. User interface (UI) events
-In this application framework, a UI event is deemed to have occurred when a client request is received from the UI. In a live environment, the input data for a HTTP request come from the client UI. However, since we are developing and testing the system locally before uploading to the live server, we create an APIGatewayV2HTTPEvent object and an APIGatewayV2HTTPResponse object to simulate the initial stages of a request-response server session.
+In this application framework, a UI event is deemed to have occurred when a client request is received from the UI. In a live environment, the input data for a HTTP request come from the client UI. However, since we are developing and testing the system locally before uploading to the live server, we create an APIGatewayV2HTTPEvent object and an APIGatewayV2HTTPResponse object to simulate the initial stages of a request-response server process.
 
 #### 2. Create an HTTP event object
 The APIGatewayV2HTTPEvent object is used to carry the input data. Later, when the Gateway object's main() method is executed, this event object will be passed to the Handler object's handleRequest() method (at step 10).
