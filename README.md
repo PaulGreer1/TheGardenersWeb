@@ -20,7 +20,7 @@ The relationship between the event handlers (defined in the Controller class) an
 The Registrar also stores the event request data taken from the event object. These event data are passed to the event handlers as they are being executed by the notify() method.
 
 #### 5. Create the Controller object
-The Controller class defines the event handler methods which are registered for UI events. Event handlers are implementations of the EventHandler interface, which is defined in the same file as the Controller class.
+The Controller class defines the event handler methods which are registered for UI events. The event handlers themselves are implementations of the EventHandler interface, which is defined in the same file as the Controller class.
 
 #### 6. Registering event handlers for events
 The 'event-registration-callback' mechanism is a simple but powerful software design pattern in computer science. The Registrar requires no manual updates in order to add handlers to its list of callback methods. Event handlers are registered for event notifications by calling the Registrar's add() method, and deregistered by calling the Registrar's delete() method. All this is done without the Registrar needing to know anything at all about the event handlers which utilise its services.
@@ -29,19 +29,17 @@ The Registrar adds and deletes event handlers and their events to and from a Has
 
 References to event handlers are defined in the Controller. During the construction of the Controller object, event handlers and the events for which they are being registered, are passed to the Registrar's add() method.
 
-The event handlers all have the same signature as that given in the EventHandler interface (found at the top of Controller.java).
-
-The EventHandler interface provides a common signature for all the event handlers, and the implementations (in the Controller class) provide the executable bodies.
+The event handlers all have the same signature as that given in the EventHandler interface (found at the top of Controller.java). The EventHandler interface provides a common signature for all the event handlers, and the implementations (defined in the Controller class) provide the executable bodies.
 
 #### 8. Simulating connection requests
-The Handler's constructor has returned a Handler object to the Gateway, and so the Gateway is now ready to simulate the initial request to the server by calling the Handler's handleRequest() method passing the event data. Everything that happens after this is exactly the same as it is on the live server.
+By this time, the Handler's constructor has returned a Handler object to the Gateway, and so the Gateway is now ready to simulate the initial request to the server by calling the Handler's handleRequest() method. The event data is passed to handleRequest(). Everything that happens after this is exactly the same as it is on the live server.
 
 The Gateway class simulates an HTTP request-response gateway by using the APIGatewayV2HTTPEvent and APIGatewayV2HTTPResponse classes to define 'event' and 'response' objects respectively.
 
 ### Handling requests and returning responses
 
 #### 9. Event names
-A HashMap< String, String > (named queryStringParameters) is populated with event data and passed to the event object's setQueryStringParameters() method. The event object's request data include a pre-defined event name. For example, 'event=INSERT_GARDEN'. In handleRequest(), this event name is passed to the Registrar's notify() method which will use it to search the event lists of registered event handlers. Other parameters depend on the function currently being carried out (see example requests in Gateway.java).
+A HashMap< String, String > named queryStringParameters is populated with event data and passed to the event object's setQueryStringParameters() method. The event object's request data include a pre-defined event name. For example, 'event=INSERT_GARDEN'. In handleRequest(), this event name is passed to the Registrar's notify() method which will use it to search the event lists of registered event handlers. Other parameters depend on the function currently being carried out (see example requests in Gateway.java).
 
 #### 10. Overview of request handling
 The main() method invokes the Handler's handleRequest() method. The HTTP event object holding the request data is passed to handleRequest(). An APIGatewayV2HTTPResponse object named 'response' is defined. Later, after the event handler has been executed, any response data will be available from the Registrar. The Handler's handleRequest() method will get these data from the Registrar, and set the body of the response object. The response object will then be returned to the Gateway.
@@ -56,7 +54,7 @@ The handleRequest() method calls the Registrar's notify() method, and passes the
 Each event handler accesses the database. The 'input' parameter of an event handler is a HashMap< String, String > which holds the request data. These data are used as parameters in prepared SQL statements to access the database, and also as simple String variables to build specific SQL statements. Regular expressions are used to ensure that only pre-approved input is accepted. Prepared statements and regular expressions together prevent SQL injection.
 
 #### 14. Types of database event handler
-There are two types of database EventHandler - readers and writers. Readers retrieve tables of data which are saved in the Registrar's dataStore variable. Both readers and writers return booleans to the registrar.
+There are two types of database EventHandler - readers and writers. Readers retrieve tables of data which are saved to the Registrar's dataStore variable. Both readers and writers return booleans to the registrar.
 
 #### 15. Data returned from event handlers
 Any data that event handlers retrieve from the database are saved to the Registrar's dataStore. These data are available to any other component which keeps a reference to the Registrar object.
