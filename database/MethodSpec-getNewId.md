@@ -1,4 +1,4 @@
-### Method specification: public static int createId( ArrayList<Integer> ints )
+### Method specification: <pre>public static int createId( ArrayList<Integer> ints )</pre>
 
 Many developers use the DBMS's built-in AUTO INCREMENT function to generate entity identification numbers. But large, zero-filled numbers are not practical for some purposes. DBMS row ID generators do not use the spare numbers left behind by deleted rows.
 
