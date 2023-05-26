@@ -1,12 +1,14 @@
 ## Overview of the server's request-response process
 
+The Gateway class simulates the reception of HTTP requests from clients, and invokes the handleRequest() method defined in the Handler class. The Gateway object also creates the Handler object, which creates other components such as a Registrar which stores request and response data for use by various components throughout the process. The Registrar also manages the notification of event handlers as user interface (UI) events occur. The Controller manages the registration of its event handlers for UI events.
+
 ![Request_response_sequence_diagram](https://github.com/PaulGreer1/TheGardenersWeb/blob/main/REQUEST_RESPONSE_SEQUENCE_DIAGRAM.png)
 Click image to enlarge
 
-### Preparing a request-response session
+### Part 1: Simulating the HTTP Gateway
 
-#### 1. User interface (UI) events
-In this application framework, a UI event is deemed to have occurred when a client request is received from the UI. In a live environment, the input data for a HTTP request come from the client UI. However, since we are developing and testing the system locally before uploading to the live server, we create an APIGatewayV2HTTPEvent object and an APIGatewayV2HTTPResponse object to simulate the initial stages of a request-response server process.
+#### 1. UI events
+In this application framework, a UI event is deemed to have occurred when a client request is received from the UI. In a live environment, the input data for an HTTP request come from the client UI. However, since we are developing and testing the system locally before uploading to the live server, we create an APIGatewayV2HTTPEvent object and an APIGatewayV2HTTPResponse object to simulate the initial stages of a request-response server process.
 
 #### 2. Create an HTTP event object
 The APIGatewayV2HTTPEvent object is used to carry the input data. Later, when the Gateway object's main() method is executed, this event object will be passed to the Handler object's handleRequest() method (at step 10).
@@ -36,7 +38,7 @@ By this time, the Handler's constructor has returned a Handler object to the Gat
 
 The Gateway class simulates an HTTP request-response gateway by using the APIGatewayV2HTTPEvent and APIGatewayV2HTTPResponse classes to define 'event' and 'response' objects respectively.
 
-### Handling requests and returning responses
+### Part 2: Handling requests and returning responses
 
 #### 9. Event names
 A HashMap< String, String > named queryStringParameters is populated with event data and passed to the event object's setQueryStringParameters() method. The event object's request data include a pre-defined event name. For example, 'event=INSERT_GARDEN'. In handleRequest(), this event name is passed to the Registrar's notify() method which will use it to search the event lists of registered event handlers. Other parameters depend on the function currently being carried out (see example requests in Gateway.java).
@@ -62,8 +64,8 @@ Any data that event handlers retrieve from the database are saved to the Registr
 #### 16. The boolean return value of event handlers
 A boolean is returned by all event handlers. This can be used to indicate the success or failure of an event handler.
 
-#### 17. Storing returned data to the response object
-The Handler's handleRequest() method retrieves the data which were stored in the Registrar's dataStore by the event handlers which were executed by notify(). The handleRequest() method builds a string from the data and saves it to the body of the response object.
+#### 17. Retrieval of data from the response object
+The Handler's handleRequest() method retrieves the data which were stored in the Registrar's dataStore by the event handlers which were executed by notify(). The handleRequest() method builds a string from the data and saves it to the body of the response object. In order to get at the returned data, the recipient needs to split this string on the hash characters ('#') to retrieve the respective event handler tables, and then split on the pipe characters ('|') to separate the rows of the individual tables.
 
 #### 18. Passing the server's response to the Gateway
 The handleRequest() method returns the response object to the Gateway.
