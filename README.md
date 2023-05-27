@@ -5,7 +5,7 @@ The numbered steps in the sequence diagram below correspond to the numbered step
 The Gateway class simulates the reception of HTTP requests from clients, and invokes the handleRequest() method defined in the Handler class. The Gateway object also creates the Handler object, which creates other components such as a Registrar which stores request and response data for use by various components throughout the process. The Registrar also manages the notification of event handlers as user interface (UI) events occur. The Controller manages the registration of its event handlers for UI events.
 
 ![Request_response_sequence_diagram](https://github.com/PaulGreer1/TheGardenersWeb/blob/main/REQUEST_RESPONSE_SEQUENCE_DIAGRAM.png)
-(Click on the image to bring up a larger image.)
+Click image to enlarge
 
 ### Part 1: Simulating the HTTP Gateway
 
@@ -43,10 +43,10 @@ The Gateway class simulates an HTTP request-response gateway by using the APIGat
 ### Part 2: Handling requests and returning responses
 
 #### 9. Event names
-A HashMap< String, String > named queryStringParameters is populated with event data and passed to the event object's setQueryStringParameters() method. The event object's request data include a pre-defined event name. For example, 'event=INSERT_GARDEN'. In handleRequest(), this event name is passed to the Registrar's notify() method which will use it to search the event lists of registered event handlers. Other parameters depend on the function currently being carried out (see example requests in Gateway.java).
+A HashMap< String, String > named queryStringParameters is populated with event data and passed to the event object's setQueryStringParameters() method. The event object's request data include a pre-defined event name. For example, 'event=INSERT_GARDEN'. In handleRequest(), this event name is passed to the Registrar's notify() method which will use it to search the event lists of all registered event handlers. Other parameters depend on the type of request currently being processed (see example requests in Gateway.java).
 
 #### 10. Overview of request handling
-The main() method invokes the Handler's handleRequest() method. The HTTP event object holding the request data is passed to handleRequest(). An APIGatewayV2HTTPResponse object named 'response' is defined. Later, after the event handler has been executed, any response data will be available from the Registrar. The Handler's handleRequest() method will get these data from the Registrar, and set the body of the response object. The response object will then be returned to the Gateway.
+The Gateway object's main() method invokes the Handler's handleRequest() method. The HTTP event object holding the request data is passed to handleRequest(). An APIGatewayV2HTTPResponse object named 'response' is defined. Later, after the event handler has been executed, any response data will be available from the Registrar. The Handler's handleRequest() method will get these data from the Registrar, and set the body of the response object. The response object will then be returned to the Gateway.
 
 #### 11. Request and response data
 As well as keeping track of event registrations, the Registrar also has two data stores, each in the form of a HashMap< String, String >. They are called queryStringParameters and dataStore. These HashMaps enable us to save request and response data to the Registrar. Depending on which stage of the execution sequence we're at, these data are available to any component which has a reference to the Registrar object. Request data are passed to registered event handlers when the Registrar notifies them about the event which has occurred. Response data are accessed by the handleRequest() method when it is time to respond to the Gateway.
@@ -55,7 +55,7 @@ As well as keeping track of event registrations, the Registrar also has two data
 The handleRequest() method calls the Registrar's notify() method, and passes the event object to it. The notify() method notifies all registered event handlers that an event has occurred. The notify() method iterates through the event handlers in the eventHandlers HashMap, searching each event handler's event list to see whether the handler is registered for the event. All handlers registered for the event are executed.
 
 #### 13. Execution of the event handlers
-Each event handler accesses the database. The 'input' parameter of an event handler is a HashMap< String, String > which holds the request data. These data are used as parameters in prepared SQL statements to access the database, and also as simple String variables to build specific SQL statements. Regular expressions are used to ensure that only pre-approved input is accepted. Prepared statements and regular expressions together prevent SQL injection.
+In this system, for each event handler which accesses the database, the 'input' parameter of the event handler is a HashMap< String, String >. This holds the request data. These data are used as parameters in prepared SQL statements to access the database, and also as simple String variables to build specific SQL statements. Regular expressions are used to ensure that only pre-approved input is accepted. Prepared statements and regular expressions together prevent SQL injection.
 
 #### 14. Types of database event handler
 There are two types of database EventHandler - readers and writers. Readers retrieve tables of data which are saved to the Registrar's dataStore variable. Both readers and writers return booleans to the registrar.
