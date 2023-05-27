@@ -5,7 +5,7 @@ The numbered steps in the sequence diagram below correspond to the numbered step
 The Gateway class simulates the reception of HTTP requests from clients, and invokes the handleRequest() method defined in the Handler class. The Gateway object also creates the Handler object, which creates other components such as a Registrar which stores request and response data for use by various components throughout the process. The Registrar also manages the notification of event handlers as user interface (UI) events occur. The Controller manages the registration of its event handlers for UI events.
 
 ![Request_response_sequence_diagram](https://github.com/PaulGreer1/TheGardenersWeb/blob/main/REQUEST_RESPONSE_SEQUENCE_DIAGRAM.png)
-Click image to enlarge
+(Click on the image to bring up a larger image.)
 
 ### Part 1: Simulating the HTTP Gateway
 
