@@ -25,7 +25,7 @@ public class Gateway {
 
 		// Some sample requests.
 
-		// The following request gets all the gardens in the database. A string
+		// Get all the gardens in the database. A string
 		// is returned. The client must split this string on the hash ('#') and
 		// pipe ('|') characters to get at the data.
 
@@ -35,9 +35,9 @@ public class Gateway {
 		response = handler.handleRequest( event, context );
 		response = handler.handleRequest( event, context );
 
-/******************************************************
-		// The following requests insert gardens into the database. They can be
-        // run all at once or one at a time.
+		/******************************************************
+		// Insert some gardens into the database. Run these individually or
+		// or one at a time.
 
 		queryStringParameters = new HashMap<String, String>();
 		queryStringParameters.put( "ui_event", "INSERT_GARDEN" );
@@ -67,23 +67,23 @@ public class Gateway {
 		event.setQueryStringParameters( queryStringParameters );
 		response = handler.handleRequest( event, context );
 
-******************************************************/
+		******************************************************/
 
-/******************************************************
-		// The following request deletes a garden from the database.
-
+		/******************************************************
+		// Delete a single garden from the database.
+		
 		queryStringParameters = new HashMap<String, String>();
 		queryStringParameters.put( "ui_event", "DELETE_GARDEN" );
 		queryStringParameters.put( "garden_id", "5" );
 		event.setQueryStringParameters( queryStringParameters );
 		response = handler.handleRequest( event, context );
-******************************************************/
+		******************************************************/
 
-/******************************************************
-		// The following request deletes a set of gardens from the database. The
-        // garden_ids value passed to queryStringParameters.put() method is a set
-        // of comma-separated integers. The event handler for this request will
-        // accept only commas and integers.
+		/******************************************************
+		// Delete a set of gardens from the database. The
+	        // garden_ids value passed to queryStringParameters.put() method is a set
+	        // of comma-separated integers. The event handler for this request will
+	        // accept only commas and integers.
 
 		// ""  "asfd"  "a,3,4"  "1,4"  "5"
 		queryStringParameters = new HashMap<String, String>();
@@ -91,15 +91,8 @@ public class Gateway {
 		queryStringParameters.put( "garden_ids", "1,2,8" );
 		event.setQueryStringParameters( queryStringParameters );
 		response = handler.handleRequest( event, context );
-******************************************************/
+		******************************************************/
 
 		System.out.println( response.getBody() );
 	}
 }
-
-/*
-SELECT * FROM garden;
-
-DELETE FROM garden WHERE garden_id IN (1,2,7,8);
-
-*/
