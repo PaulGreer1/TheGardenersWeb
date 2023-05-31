@@ -41,7 +41,11 @@ public class Controller {
 	 * @param registrar .
 	 */
 	public Controller( Registrar registrar ) {
-
+		try {
+			con = DriverManager.getConnection(url, username, password);
+		} catch ( SQLException e ) {
+			throw new RuntimeException(e);
+		}
 		String[] events = { "INSERT_GARDEN", "UPDATE_GARDEN", "DELETE_GARDEN", "GET_GARDEN", "GET_GARDENS", "DELETE_GARDENS" };
 		this.registrar = registrar;
 
@@ -61,7 +65,7 @@ public class Controller {
 
 		//
 		try {
-			con = DriverManager.getConnection(url, username, password);
+
 
 			// Start transaction.
 
@@ -76,8 +80,6 @@ public class Controller {
 			}
 
 			// End transaction.
-
-			con.close();
 		}
 		catch ( Exception e ) {
 			this.registrar.dataStore.put( "getGardensOutput", e.getMessage() );
@@ -98,8 +100,6 @@ public class Controller {
 
 		// Delete a Garden from the database.
 		try {
-			con = DriverManager.getConnection(url, username, password);
-
 			// Start transaction.
 
 			//
@@ -114,8 +114,6 @@ public class Controller {
 			int row = preparedStatement.executeUpdate();
 
 			// End transaction.
-
-			con.close();
 		}
 		catch ( Exception e ) {
 			this.registrar.dataStore.put( "deleteGardenOutput", e.getMessage() );
@@ -138,8 +136,6 @@ public class Controller {
 
 		// Delete a set of Gardens from the database.
 		try {
-			con = DriverManager.getConnection(url, username, password);
-
 			// Start transaction.
 
 			//
@@ -158,8 +154,6 @@ public class Controller {
 			}
 
 			// End transaction.
-
-			con.close();
 		}
 		catch ( Exception e ) {
 			this.registrar.dataStore.put( "deleteGardensOutput", e.getMessage() );
@@ -208,8 +202,6 @@ public class Controller {
 
 		// Insert a Garden into the database.
 		try {
-			con = DriverManager.getConnection( url, username, password );
-
 			// Start transaction.
 
 			//
@@ -228,8 +220,6 @@ public class Controller {
 			int row = preparedStatement.executeUpdate();
 
 			// End transaction.
-
-			con.close();
 		}
 		catch ( Exception e ) {
 			this.registrar.dataStore.put( "insertGarden", e.getMessage() );
