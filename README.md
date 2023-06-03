@@ -36,7 +36,7 @@ References to event handlers are defined in the Controller. During the construct
 The event handlers all have the same signature as that given in the EventHandler interface (found at the top of Controller.java). The EventHandler interface provides a common signature for all the event handlers, and the implementations (defined in the Controller class) provide the executable bodies.
 
 #### 8. Simulating connection requests
-By this time, the Handler's constructor has returned a Handler object to the Gateway, and so the Gateway is now ready to simulate the initial request to the server by calling the Handler's handleRequest() method. The event data is passed to handleRequest(). Everything that happens after this is exactly the same as it is on the live server.
+By this time, the Handler's constructor has returned a Handler object to the Gateway, and so the Gateway is now ready to simulate the initial request to the server by calling the Handler's handleRequest() method. The event data are passed to handleRequest(). Everything that happens after this is exactly the same as it is on the live server.
 
 The Gateway class simulates an HTTP request-response gateway by using the APIGatewayV2HTTPEvent and APIGatewayV2HTTPResponse classes to define 'event' and 'response' objects respectively.
 
