@@ -67,7 +67,7 @@ Any data that event handlers retrieve from the database are saved to the Registr
 A boolean is returned by all event handlers. This can be used to indicate the success or failure of an event handler.
 
 #### 17. Retrieval of data from the response object
-The Handler's handleRequest() method retrieves the data which were stored in the Registrar's dataStore by the event handlers which were executed by notify(). The handleRequest() method builds a string from the data and saves it to the body of the response object. In order to get at the returned data, the recipient needs to split this string on the hash characters ('#') to retrieve the respective event handler tables, and then split on the pipe characters ('|') to separate the rows of the individual tables.
+The Handler's handleRequest() method retrieves the data which were stored in the Registrar's dataStore by the event handlers which were executed by notify(). The handleRequest() method builds a string from the data and saves it to the body of the response object. In order to access the returned data, the recipient needs to split this string on the hash characters ('#') to retrieve the respective event handler tables, and then split on the pipe characters ('|') to separate the rows of the individual tables.
 
 #### 18. Passing the server's response to the Gateway
 The handleRequest() method returns the response object to the Gateway.
