@@ -1,4 +1,4 @@
-## Overview of the server's request-response process
+## Overview of our server's request-response process
 
 The numbered steps in the sequence diagram below correspond to the numbered steps in this transcript.
 
