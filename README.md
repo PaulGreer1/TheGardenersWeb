@@ -1,3 +1,5 @@
+![Request_response_sequence_diagram](https://github.com/PaulGreer1/WebsiteLamp/blob/main/DOWNTOWNCODER_004.png)
+
 ## Overview of our server's request-response process
 
 The numbered steps in the sequence diagram below correspond to the numbered steps in this transcript.
