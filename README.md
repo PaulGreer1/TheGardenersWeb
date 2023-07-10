@@ -4,7 +4,7 @@
 
 The numbered steps in the sequence diagram below correspond to the numbered steps in this transcript.
 
-Deployed to an AWS Lambda compute service. Provides database read/write services to clients. Uses Registrar to provide event and handler registration/callback facility. Registrar also provides input and output data storage and retrieval facility for other components in the system.
+This is the server component of the TheGardenersWeb system. It is deployed to an AWS Lambda compute service from where it provides database read/write services to clients. This app uses a Registrar object to provide an event and handler registration/callback facility. The Registrar also provides an input and output data storage and retrieval facility for other components in the system.
 
 The Gateway class simulates the reception of HTTP requests from clients, and invokes the handleRequest() method defined in the Handler class. The Gateway object also creates the Handler object, which creates other components such as a Registrar which stores request and response data for use by various components throughout the process. The Registrar also manages the notification of event handlers as user interface (UI) events occur. The Controller manages the registration of its event handlers for UI events.
 
