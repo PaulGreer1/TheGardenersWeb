@@ -4,9 +4,9 @@
 public static int createId( ArrayList<Integer> ints )
 </pre>
 
-Many developers use the DBMS's built-in AUTO INCREMENT function to generate entity identification numbers. But large, zero-filled numbers are not practical for some purposes. DBMS row ID generators do not use the spare numbers left behind by deleted rows.
+Many developers use the DBMS's built-in AUTO INCREMENT function to generate entity identification numbers. However, large zero-filled numbers are not practical for some purposes. DBMS row ID generators do not use the spare numbers left behind by deleted rows.
 
-The method specified below keeps the maximum number as low as possible by using ID numbers left over by deleted rows. This would be useful for, say, a queueing system in a seating area. Needs only a low maximum number. Numbers consisting of only two or three digits. Once a number has been used, it is released back into the pool. Short numbers with two or three digits can be easily memorised and quickly read on a screen or paper ticket. Can also be easily spoken and heard via a loudspeaker, and thus can be quickly matched visually by the ticket holder.
+Our method keeps the maximum number as low as possible by using ID numbers left by deleted rows. This would be useful for a queueing system in a seating area requiring a low maximum number. Numbers consist of only two or three digits. Once somebody has used a number, it returns to the pool. Numbers with two or three digits are easier to remember and quickly read on a screen or paper ticket. We can easily pronounce them, hear them clearly over a loudspeaker, and match them visually.
 
 #### Notation
 
